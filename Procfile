@@ -1,1 +1,1 @@
-web: java $JAVA_OPTS -Dserver.port=$PORT -jar $PATH_TO_JAR
+web: java $JAVA_OPTS -Dserver.port=$PORT -Deureka.client.serviceUrl.defaultZone=https://iosr-ms-discovery-service.herokuapp.com/ -jar $PATH_TO_JAR
