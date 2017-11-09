@@ -7,20 +7,25 @@
         <groupId>pl.edu.agh.ki.iosr</groupId>
         <version>1.0-SNAPSHOT</version>
     </parent>
-    <modelVersion>4.0.0</modelVersion>
 
+    <modelVersion>4.0.0</modelVersion>
     <artifactId>zipkin-service</artifactId>
+
+
+    <properties>
+        <zipkin.version>LATEST</zipkin.version>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>io.zipkin.java</groupId>
             <artifactId>zipkin-server</artifactId>
-            <version>LATEST</version>
+            <version>${zipkin.version}</version>
         </dependency>
         <dependency>
             <groupId>io.zipkin.java</groupId>
             <artifactId>zipkin-autoconfigure-ui</artifactId>
-            <scope>runtime</scope>
-            <version>LATEST</version>
+            <version>${zipkin.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -33,7 +38,6 @@
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-eureka</artifactId>
-            <version>RELEASE</version>
         </dependency>
     </dependencies>
 
