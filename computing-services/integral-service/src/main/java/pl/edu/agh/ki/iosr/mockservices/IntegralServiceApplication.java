@@ -8,7 +8,7 @@ import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
 @EnableDiscoveryClient
-@ComponentScan("pl.edu.agh.ki.iosr.mockservices.boundary")
+@ComponentScan({"pl.edu.agh.ki.iosr.mockservices.boundary", "pl.edu.agh.ki.iosr.mockservices.control"})
 public class IntegralServiceApplication {
 
     public static void main(String[] args) throws Exception {
