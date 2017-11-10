@@ -12,7 +12,7 @@ public class QuadraticFunctionDTO extends FunctionDTO {
 
     @Override
     public double getValue(double x) {
-        return a * Math.sqrt(inner.getValue(x)) + b;
+        return a * Math.pow(inner.getValue(x),2) + b;
     }
 
     @Override
