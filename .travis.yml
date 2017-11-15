@@ -10,6 +10,6 @@ after_success:
   - bash <(curl -s https://codecov.io/bash)
   - docker images
   - if [ "$TRAVIS_BRANCH" == "master" ]; then
-    docker login -u "iosrmockservices" -p "Wojtek_1234";
+    docker login -u "beatabubula@interia.pl" -p "Wojtek_1234";
     docker push discovery-service;
     fi
