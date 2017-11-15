@@ -26,12 +26,12 @@ public class IntegralsTest {
         Assert.assertEquals(50, integralComputingService.computeIntegral(f, 0, 10, EPSILON), EPSILON);
         Assert.assertEquals(1.5, integralComputingService.computeIntegral(f, -1, 2, EPSILON), EPSILON);
     }
-}
 
-class MockFunctionValueClient implements FunctionValueClient {
+    private static class MockFunctionValueClient implements FunctionValueClient {
 
-    @Override
-    public double getValue(FunctionDTO f, double x) {
-        return f.getValue(x);
+        @Override
+        public double getValue(FunctionDTO f, double x) {
+            return f.getValue(x);
+        }
     }
 }
