@@ -10,5 +10,5 @@ after_success:
   - bash <(curl -s https://codecov.io/bash)
   - if [ "$TRAVIS_BRANCH" == "master" ]; then
     docker login -u "iosrmockservices" -p "Wojtek_1234";
-    docker push iosrmockservices/iosr;
+    docker push discovery-service;
     fi
