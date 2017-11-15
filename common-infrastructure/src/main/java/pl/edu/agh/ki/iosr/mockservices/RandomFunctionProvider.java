@@ -3,12 +3,13 @@ package pl.edu.agh.ki.iosr.mockservices;
 import pl.edu.agh.ki.iosr.mockservices.impl.IdentityFunctionDTO;
 import pl.edu.agh.ki.iosr.mockservices.impl.LinearFunctionDTO;
 import pl.edu.agh.ki.iosr.mockservices.impl.QuadraticFunctionDTO;
+import pl.edu.agh.ki.iosr.mockservices.impl.SquareFunctionDTO;
 
 import java.util.Random;
 
 public class RandomFunctionProvider {
 
-    private static final int N = 3;
+    private static final int N = 4;
 
     public static FunctionDTO generateFunction() {
         return generateFunction(new IdentityFunctionDTO());
@@ -25,7 +26,9 @@ public class RandomFunctionProvider {
             result = new LinearFunctionDTO(r.nextFloat(), r.nextFloat(), inner);
         } else if (rand == 2) {
             result = new QuadraticFunctionDTO(r.nextFloat(), r.nextFloat(), inner);
-        }else {
+        } else if (rand == 3) {
+            result = new SquareFunctionDTO();
+        } else {
             result = new IdentityFunctionDTO();
         }
 

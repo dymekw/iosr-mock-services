@@ -6,13 +6,16 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import pl.edu.agh.ki.iosr.mockservices.impl.IdentityFunctionDTO;
 import pl.edu.agh.ki.iosr.mockservices.impl.LinearFunctionDTO;
 import pl.edu.agh.ki.iosr.mockservices.impl.QuadraticFunctionDTO;
+import pl.edu.agh.ki.iosr.mockservices.impl.SquareFunctionDTO;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY)
 @JsonSubTypes({
         @JsonSubTypes.Type(value = IdentityFunctionDTO.class, name = "identity"),
         @JsonSubTypes.Type(value = QuadraticFunctionDTO.class, name = "quadratic"),
-        @JsonSubTypes.Type(value = LinearFunctionDTO.class, name = "linear") }
+        @JsonSubTypes.Type(value = LinearFunctionDTO.class, name = "linear"),
+        @JsonSubTypes.Type(value = SquareFunctionDTO.class, name = "sqrt"),
+    }
 )
 public abstract class FunctionDTO {
     protected double a;
