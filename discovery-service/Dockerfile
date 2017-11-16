@@ -1,5 +1,9 @@
 FROM openjdk:8-jdk-alpine
 VOLUME /tmp
+
+FROM maven:3.5-jdk-8-alpine
+RUN mvn install -DpomFile=../pom.xml
+
 ADD target/discovery-service-1.0-SNAPSHOT.jar app.jar
 ENV JAVA_OPTS=""
 ENTRYPOINT exec java $JAVA_OPTS -jar /app.jar
