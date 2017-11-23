@@ -8,8 +8,18 @@ script: "mvn cobertura:cobertura"
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
-  - docker images
-  - if [ "$TRAVIS_BRANCH" == "master" ]; then
-    docker login -u "beatabubula@interia.pl" -p "Wojtek_1234";
-    docker push discovery-service;
-    fi
+  - docker login -u "iosrmockservices" -p "Wojtek_1234";
+    docker tag discovery-service iosrmockservices/discovery-service;
+    docker tag zipkin-service iosrmockservices/zipkin-service;
+    docker tag function-value-service iosrmockservices/function-value-service;
+    docker tag integral-service iosrmockservices/integral-service;
+    docker tag client-service-one iosrmockservices/client-service-one;
+    docker tag client-service-two iosrmockservices/client-service-two;
+    docker tag client-service-scheduler iosrmockservices/client-service-scheduler;
+    docker push iosrmockservices/discovery-service;
+    docker push iosrmockservices/zipkin-service;
+    docker push iosrmockservices/function-value-service;
+    docker push iosrmockservices/integral-service;
+    docker push iosrmockservices/client-service-one;
+    docker push iosrmockservices/client-service-two;
+    docker push iosrmockservices/client-service-scheduler;
