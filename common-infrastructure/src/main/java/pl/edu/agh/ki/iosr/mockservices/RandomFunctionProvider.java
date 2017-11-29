@@ -27,7 +27,7 @@ public class RandomFunctionProvider {
         } else if (rand == 2) {
             result = new QuadraticFunctionDTO(r.nextFloat(), r.nextFloat(), inner);
         } else if (rand == 3) {
-            result = new SquareFunctionDTO();
+            result = new SquareFunctionDTO(r.nextFloat(), r.nextFloat(), inner);
         } else {
             result = new IdentityFunctionDTO();
         }

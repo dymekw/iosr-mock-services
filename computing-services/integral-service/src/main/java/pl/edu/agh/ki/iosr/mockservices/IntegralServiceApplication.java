@@ -14,4 +14,5 @@ public class IntegralServiceApplication {
     public static void main(String[] args) throws Exception {
         SpringApplication.run(IntegralServiceApplication.class, args);
     }
+    
 }

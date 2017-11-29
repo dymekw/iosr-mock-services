@@ -1,4 +1,9 @@
 .idea/
+.settings/
 target/
 *.iml
 *.directory
+*.project
+*.prefs
+*.classpath
+common-api/bin/
