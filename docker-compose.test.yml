@@ -46,16 +46,16 @@ services:
     ports:
       - "8181:8181"
       
-  #client-service-two:
-  #  image: client-service-two
-  #  links:
-  #    - service-discovery
-  #    - zipkin-service
-  #  depends_on:
-  #    - service-discovery
-  #    - zipkin-service
-  #  ports:
-  #    - "8282:8282"
+  client-service-two:
+    image: client-service-two
+    links:
+      - service-discovery
+      - zipkin-service
+    depends_on:
+      - service-discovery
+      - zipkin-service
+    ports:
+      - "8282:8282"
       
   #client-service-scheduler:
   #  image: client-service-scheduler
