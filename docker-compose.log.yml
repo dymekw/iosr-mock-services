@@ -1,0 +1,19 @@
+version: "3"
+services:
+  client-service-one:
+    image: client-service-one
+    ports:
+      - "8181:8181"
+    volumes:
+      - data:/tmp
+
+      
+  client-service-scheduler:
+    image: client-service-scheduler
+    volumes:
+      - data:/tmp
+
+volumes:
+  data:
+    external:
+      name: nginxlogs
