@@ -1,0 +1,8 @@
+filebeat:
+    prospectors:
+        - type: log
+          enabled: true
+          paths:
+            - "/logs/*debug.*.log"
+output.logstash:
+    hosts: ["logstash:5044"]

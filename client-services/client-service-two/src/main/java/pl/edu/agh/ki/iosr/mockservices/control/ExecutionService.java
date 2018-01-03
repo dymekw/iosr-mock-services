@@ -1,5 +1,7 @@
 package pl.edu.agh.ki.iosr.mockservices.control;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.context.annotation.Bean;
@@ -26,6 +28,8 @@ public class ExecutionService {
     @Autowired
     RestTemplate restTemplate;
 
+    static Log log = LogFactory.getLog(ExecutionService.class.getName());
+
     @Bean
     private RestTemplate getRestTemplate() {
         return RestTemplateProvider.restTemplate(FunctionDTO.class, FunctionDTO.class);
@@ -35,7 +39,7 @@ public class ExecutionService {
     @Async
     public void executeTasks(int N) {
         for (int i=0; i<N; i++) {
-            System.out.println(executeTask());
+            log.info(executeTask());
         }
     }
 

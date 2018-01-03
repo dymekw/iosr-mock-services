@@ -1,0 +1,21 @@
+{
+  "name": "my-app",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1",
+    "react-numeric-input": "^2.2.0",
+    "react-radio-group": "^3.0.2",
+    "react-scripts": "1.0.17",
+    "react-three-renderer": "^3.2.3",
+    "react-threejs": "0.0.3",
+    "three": "^0.86.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
+}

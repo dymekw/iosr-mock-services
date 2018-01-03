@@ -1,0 +1,17 @@
+.App {
+  text-align: left;
+  margin-left: 10%;
+  display: inline-flex;
+}
+
+.FunctionChooser {
+  display: grid;
+  margin-bottom: 2%;
+}
+
+.FunctionVisualiser {
+}
+
+.ParamsPicker {
+
+}

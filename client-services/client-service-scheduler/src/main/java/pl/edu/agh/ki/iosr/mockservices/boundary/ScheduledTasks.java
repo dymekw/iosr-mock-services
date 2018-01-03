@@ -1,5 +1,7 @@
 package pl.edu.agh.ki.iosr.mockservices.boundary;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.context.annotation.Bean;
@@ -28,6 +30,8 @@ public class ScheduledTasks {
     @Autowired
     RestTemplate restTemplate;
 
+    static Log log = LogFactory.getLog(ScheduledTasks.class.getName());
+
     @Bean
     private RestTemplate getRestTemplate() {
         return RestTemplateProvider.restTemplate(FunctionDTO.class, FunctionDTO.class);
@@ -43,17 +47,20 @@ public class ScheduledTasks {
 
     @Scheduled(fixedRate =  1000)
     public void createNewTask() {
-        FunctionDTO f = RandomFunctionProvider.generateFunction();
-
-        double result;
-        if (new Random().nextBoolean()) {
-            result = restTemplate.postForObject(getFunctionValueServiceURL(FUNCTION_VALUE_SERVICE_GET_VALUE_PATH) + "?x=" + new Random().nextInt(100), f, double.class);
-            System.err.println("VALUE: " + f.toString() + " = " + result);
-        } else {
-            double a = new Random().nextDouble();
-            double b = a + new Random().nextDouble();
-            result = restTemplate.postForObject(getIntegralServiceURL(INTEGRAL_SERVICE_INTEGRAL_PATH) + "?a=" + a + "&b=" + b, f, double.class);
-            System.err.println("INTEGRAL: " + f.toString() + " = " + result);
+        try {
+            FunctionDTO f = RandomFunctionProvider.generateFunction();
+            double result;
+            if (new Random().nextBoolean()) {
+                result = restTemplate.postForObject(getFunctionValueServiceURL(FUNCTION_VALUE_SERVICE_GET_VALUE_PATH) + "?x=" + new Random().nextInt(100), f, double.class);
+                log.info("VALUE: " + f.toString() + " = " + result);
+            } else {
+                double a = new Random().nextDouble();
+                double b = a + new Random().nextDouble();
+                result = restTemplate.postForObject(getIntegralServiceURL(INTEGRAL_SERVICE_INTEGRAL_PATH) + "?a=" + a + "&b=" + b, f, double.class);
+                log.info("INTEGRAL: " + f.toString() + " = " + result);
+            }
+        } catch (Exception e) {
+            log.error(e.getMessage());
         }
     }
 }

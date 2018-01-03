@@ -1,19 +1,98 @@
 version: "3"
 services:
+  service-discovery:
+    image: discovery-service
+    ports:
+      - "8761:8761"
+      
+  zipkin-service:
+    image: zipkin-service
+    links:
+      - service-discovery
+    depends_on:
+      - service-discovery
+    ports:
+      - "9411:9411"
+
+  function-value-service:
+    image: function-value-service
+    links:
+      - service-discovery
+    depends_on:
+      - service-discovery
+      
+  integral-service:
+    image: integral-service
+    links:
+      - service-discovery
+    depends_on:
+      - service-discovery
+      
   client-service-one:
     image: client-service-one
+    links:
+      - service-discovery
+      - zipkin-service
+    depends_on:
+      - service-discovery
+      - zipkin-service
     ports:
       - "8181:8181"
+      
+  client-service-two:
+    image: client-service-two
+    links:
+      - service-discovery
+      - zipkin-service
+    depends_on:
+      - service-discovery
+      - zipkin-service
+    ports:
+      - "8282:8282"
     volumes:
-      - data:/tmp
-
+      - data:/logs
       
   client-service-scheduler:
     image: client-service-scheduler
+    links:
+      - service-discovery
+      - zipkin-service
+      - function-value-service
+      - integral-service
+    depends_on:
+      - service-discovery
+      - zipkin-service
+      - function-value-service
+      - integral-service
     volumes:
-      - data:/tmp
+      - data:/logs
+      
+  zuul:
+    image: zuul-service
+    ports:
+      - "8765:8080"
+      
+  filebeat:
+    build:
+      context: .
+      dockerfile: ./filebeat/Dockerfile
+    volumes:
+      - data:/logs
+      
+  logstash:
+    build:
+      context: .
+      dockerfile: ./logstash/Dockerfile
+      
+  elasticsearch:
+    image: elasticsearch
+
+  kibana:
+    image: kibana
+    ports:
+      - 5601:5601
 
 volumes:
   data:
     external:
-      name: nginxlogs
+      name: logs

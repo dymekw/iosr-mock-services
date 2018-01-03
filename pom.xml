@@ -15,6 +15,7 @@
         <module>discovery-service</module>
         <module>common-infrastructure</module>
         <module>zipkin-service</module>
+	<module>zuul-service</module>
     </modules>
 
     <parent>
