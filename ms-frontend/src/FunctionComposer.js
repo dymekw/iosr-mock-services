@@ -144,7 +144,7 @@ class FunctionComposer extends Component {
 	    <br></br>
 	    <a href={URL_PREFIX + '/discovery/'}>EUREKA</a>
 	    <br></br>
-	    <a href={URL_PREFIX + '/discovery/'}>KIBANA</a>
+	    <a href={URL_WITHOUT_PORT+ ':5601'}>KIBANA</a>
         </div>
         <div className="FunctionComposer">
 		<p>{this.state.offset}</p>
@@ -181,6 +181,7 @@ class FunctionComposer extends Component {
           <div>
 	    <button onClick={this.generateTasks.bind(this)}>GENERATE TASKS</button>
 	    <button onClick={this.randomTask.bind(this)}>RANDOM TASK</button>
+	    <button onClick={this.randomOffset.bind(this)}>RANDOM OFFSET</button>
           </div>
           <p>{this.state.function}</p>
           <p>{this.state.result}</p>
