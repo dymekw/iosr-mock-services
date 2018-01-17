@@ -17,7 +17,7 @@
             <fileNamePattern>${DEV_HOME}/${PROJECT_NAME}-debug.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
             <timeBasedFileNamingAndTriggeringPolicy
                     class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
-                <maxFileSize>10KB</maxFileSize>
+                <maxFileSize>1KB</maxFileSize>
             </timeBasedFileNamingAndTriggeringPolicy>
         </rollingPolicy>
 

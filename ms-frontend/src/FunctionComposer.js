@@ -5,14 +5,15 @@ import * as THREE from 'three';
 import React3 from 'react-three-renderer';
 import './App.css';
 
-const URL_PREFIX = 'http://34.241.58.25:8765';
+const URL_WITHOUT_PORT = 'http://34.241.58.25';
+const URL_PREFIX = URL_WITHOUT_PORT + ':8765';
 
 class FunctionComposer extends Component {
 
   constructor(props) {
     super(props);
     this.cameraPosition = new THREE.Vector3(0, 0, 5);
-    this.state = {function: "x", selectedValue: 'linear', a: 0, b: 0};
+    this.state = {function: "x", selectedValue: 'linear', a: 0, b: 0, offset: 0};
     this.funObj = {"@type": "identity", "type": "identity"};
     this.maxVal = 1;
     this.minVal = 0;
@@ -99,6 +100,12 @@ class FunctionComposer extends Component {
       .then(response => response.text())
       .then(text => this.setState({result: text}));
   }
+  
+  randomOffset() {
+    fetch(URL_PREFIX + '/client-service-two/random-offset', {method: 'GET', headers: this.getHeaders()})
+      .then(response => response.text())
+      .then(text => this.setState({offset: text}));
+  }
 
   getFuncValue(x, func) {
     let inner = 0;
@@ -136,8 +143,11 @@ class FunctionComposer extends Component {
 	    <a href={URL_PREFIX + '/zipkin/'}>ZIPKIN</a>
 	    <br></br>
 	    <a href={URL_PREFIX + '/discovery/'}>EUREKA</a>
+	    <br></br>
+	    <a href={URL_PREFIX + '/discovery/'}>KIBANA</a>
         </div>
         <div className="FunctionComposer">
+		<p>{this.state.offset}</p>
         	<div className="ParamsPicker">
         	  <p>a=<NumericInput step={0.01} precision={2} value={this.state.a} min={-1} max={1} onChange={this.handleChangeA.bind(this)}/></p>
         	  <p>b=<NumericInput step={0.01} precision={2} value={this.state.b} min={0} max={1} onChange={this.handleChangeB.bind(this)}/></p>
