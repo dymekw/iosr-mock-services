@@ -9,16 +9,14 @@ import java.util.Random;
 public class FunctionValueComputingService {
 
     public double getValue(FunctionDTO function, double x) {
-        //add log before and after
         return getValueInner(function, x);
     }
 
     private double getValueInner(FunctionDTO function, double x) {
         try {
             Thread.sleep(new Random().nextInt(1000));
-            return function.getValue(x);
+            return function.getValue(x) + OffsetProvider.getOffset();
         } catch (Exception e) {
-            //add log
             return 0;
         }
     }

@@ -71,6 +71,11 @@ services:
     image: zuul-service
     ports:
       - "8765:8080"
+
+  iosr-active-mq:
+    build:
+      context: .
+      dockerfile: ./iosr-active-mq/Dockerfile
       
   filebeat:
     build:
